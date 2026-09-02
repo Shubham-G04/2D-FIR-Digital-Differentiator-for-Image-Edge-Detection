@@ -52,7 +52,7 @@ In VLSI Digital Signal Processing system design, **Pipelining** reduces the crit
 
 In the original un-pipelined architecture, the shift register update, signed coefficient multiplication, 5-input adder tree, arithmetic $\frac{1}{8}$ scaling, and absolute magnitude computation all occurred in a single continuous combinational propagation path:
 
-$$T_{\text{crit\_comb}} = T_{\text{shift}} + T_{\text{mult}} + T_{\text{adder\_tree}} + T_{\text{scale/abs}}$$
+$$T_{\text{crit,comb}} = T_{\text{shift}} + T_{\text{mult}} + T_{\text{adder}} + T_{\text{scale}}$$
 
 By applying **2 feed-forward cut sets**, we partition the DFG into **3 balanced pipeline stages**:
 
@@ -93,7 +93,7 @@ By applying **2 feed-forward cut sets**, we partition the DFG into **3 balanced 
 * **Stage 3 (Accumulation & Saturation):** Computes signed sum, performs arithmetic right shift (`>>> 3`), calculates absolute magnitude, and saturates combined 2D output to 8 bits.
 
 #### Key Architectural Gains:
-* **Critical Path Reduction:** Reduced from $T_{\text{crit\_comb}}$ to $T_{\text{crit\_pipe}} = \max(T_{\text{stage1}}, T_{\text{stage2}}, T_{\text{stage3}})$.
+* **Critical Path Reduction:** Reduced from $T_{\text{crit,comb}}$ to $T_{\text{crit,pipe}} = \max(T_{\text{stage1}}, T_{\text{stage2}}, T_{\text{stage3}})$.
 * **Latency:** 3 clock cycles.
 * **Throughput:** Real-time continuous processing of **1 pixel / clock cycle**.
 
@@ -105,7 +105,7 @@ Both RTL variants were synthesized targeting the **GPDK 180nm standard-cell libr
 
 | Metric | Pipelined (3-Stage) | Non-Pipelined (Combinational) | Trade-Off / Impact |
 | :--- | :--- | :--- | :--- |
-| **Cell Area** | **13,601.65 $\mu m^{2}$** | **6,243.65 $\mu m^{2}$** | **2.18x Area Overhead** (Inserted pipeline registers) |
+| **Cell Area** | **13,601.65 µm²** | **6,243.65 µm²** | **2.18x Area Overhead** (Inserted pipeline registers) |
 | **Total Power** | **1.297 mW** | **0.607 mW** | **2.14x Power Overhead** (Dynamic clocking of registers) |
 | **Critical Path Delay** | **4,489 ps** | **4,672 ps** | **4.0% Faster Propagation Delay** |
 | **Setup Slack** | **+5,220 ps (MET)** | **+4,362 ps (MET)** | **+858 ps Higher Slack Margin** |
@@ -144,7 +144,7 @@ The pipelined 2D edge differentiator was implemented on a **Xilinx Kintex-7 FPGA
 
 ---
 
-## 🚦 Verification & Simulation Guide
+## 3. Verification & Simulation Guide
 
 ### Prerequisites
 * [Icarus Verilog (`iverilog`)](http://iverilog.icarus.com/)
