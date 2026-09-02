@@ -1,0 +1,25 @@
+# Simulation Output Files
+*.vvp
+*.vcd
+*.log
+*.jou
+
+# Cadence Genus & Innovus Synthesis Artifacts
+fv/
+genus.cmd*
+genus.log*
+synth_reports/
+
+# Xilinx Vivado Build Artifacts
+.Xil/
+*.str
+*.jou
+*.log
+*.pb
+*.wdb
+
+# OS / Editor Files
+.DS_Store
+.vscode/
+.idea/
+*.swp
